@@ -3,26 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenshinQuiz - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quizzlyyy - Home</title>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <header>
+    <div id="section-1">
+        <img class="background-media" src="resources/genb.jpeg" alt="Background Image">
+    </div>
+
+    <header id="nav-bar">
+        <div id="logo-container">
+            <a href="home.html">Quizzlyyy</a> 
+        </div>
         <nav>
-            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/home.html">Home</a>
-            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/quizzes.html">Quizzes</a>
-            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/create.html">Create</a>
+            <a href="home.html">Home</a> 
+            <a href="quizzes.html">Quizzes</a> 
+            <a href="create.html">Create</a> 
         </nav>
+        <div class="user-controls">
+             <form action="/search" method="get" style="display: inline-flex;">
+                 <input type="text" name="query" placeholder="Search quizzes...">
+                 <button type="submit">Search</button>
+             </form>
+             </div>
     </header>
 
+    <img id="musicToggleImage" src="resources/Paimon.webp" alt="Play/Pause Music">
+    <audio id="myAudio" src="resources/1.mp3" preload="auto"></audio>
+
     <main>
-        <h1>Welcome to GenshinQuiz!</h1>
+        <h1>Welcome to Quizzlyyy!</h1>
         <p>Your ultimate quiz platform.</p>
     </main>
 
     <footer>
-        <p>&copy; 2025 GenshinQuiz. All rights reserved.</p>
-        <p>Contact us: <a href="mailto:genshinquiz@gmail.com">genshinquiz@gmail.com</a></p>
+        <p>Project created by: Quizzlyyy Dev Team</p>
+        <p>Lead Designer and Developer: Alina</p>
+        <p>Development and Content: Svitlana</p>
+        <p>&copy; 2025 QuizTime. All rights reserved.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

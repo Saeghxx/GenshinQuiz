@@ -1,38 +1,63 @@
-body {
-  border-style: dashed;
-  color: lightblue;
-  border-width: 2px;
-  padding-left: 10px;
-  padding-right: 10px;
+/* ------------------- СТИЛІ ФОРМИ (ТІЛЬКИ ДЛЯ CREATE.HTML) --------------------- */
+
+.quiz-form {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #2a2a2a; /* Фон форми */
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Більш виразна тінь */
 }
 
-h1 {
-  color: blanchedalmond;
-  text-align: left;
-  font-size: 40px;
+/* Стилі для контейнера питання */
+.question {
+    border: 1px solid #444;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    background-color: #202020;
 }
 
-p {
-  color: blanchedalmond;
-  font-size: 20px;
+/* Стилі для контейнера вибору */
+.choice {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
-h1 {
-  margin-bottom: 20px;
+.choice input[type="text"] {
+    margin-right: 10px;
+    flex-grow: 1; /* Дозволяє полю зайняти весь доступний простір */
 }
 
-a {
-  color: blanchedalmond;
-  font-size: 20px;
+/* Стилі для кнопки "Remove" */
+.remove-question, .remove-choice, .remove-grade {
+    background-color: #dc3545; /* Червоний колір */
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 5px;
 }
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.remove-question:hover, .remove-choice:hover, .remove-grade:hover {
+    background-color: #c82333;
 }
 
-img {
-  padding-right: 500px;
-  padding-bottom: 500px;
+/* Стилі для кнопки "Mark Correct" */
+.mark-btn {
+    background-color: #6c757d; /* Сірий, початковий колір */
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 3px;
+    margin-left: 10px;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+/* Стиль для правильної відповіді */
+.mark-btn.correct {
+    background-color: #28a745; /* Зелений колір, якщо відповідь правильна */
 }

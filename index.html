@@ -1,24 +1,50 @@
-<html>
-<header>
-    <title>Quizzlyyy</title> 
-    <form action="/search" method="get">
-        <input type="text" name="query" placeholder="Search quizzes...">
-        <button type="submit">Search</button>
-    </form>
-    <a href="/login">Login</a> | <a href="/register">Register</a>
-</header>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <nav>
-        <a href="\Users\38050\Labs\praktyka\src\home.html">Home</a> 
-        <a href="\Users\38050\Labs\praktyka\src\quizzes.html">Quizzes</a> 
-        <a href="\Users\38050\Labs\praktyka\src\create.html">Create</a> 
-    </nav>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizTime - Quizzes</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"/>
 </head>
 <body>
-    <h1>Welcome to Quizzlyyy!</h1>
-    <p>Your ultimate quiz platform.</p>
+
+    <header id="nav-bar"> 
+        <div id="logo-container">
+            <img src="/resources/logo-icon.png" alt="logo" height="50px"> 
+            <a href="home.html">QuizTime</a> 
+        </div>
+
+        <nav>
+            <a href="home.html">Home</a> 
+            <a href="quizzes.html">Quizzes</a> 
+            <a href="create.html">Create</a> 
+        </nav>
+        
+        </header>
+
+    <main>
+        <h1>Welcome to Quiz!</h1>
+        
+        <div id="app"> 
+            <a class="quiz-item add-quiz-btn" href="create.html">
+                <img src="/resources/plus-icon.png" alt="Add Quiz"/>
+                <p>Create New Quiz</p>
+            </a>
+            
+            </div>
+
+    </main>
+
+    <footer>
+    <p>Project created by: **Quizzlyyy Dev Team**</p>
+    <p>Lead Designer and Developer: Alina</p>
+    <p>Development and Content: Svitlana</p>
+    </footer>
+
+    <script src="quizzes.js"></script>
+    
 </body>
-<footer>
-    <p>&copy; 2025 Quizzlyyy. All rights reserved.</p> 
-    <p>Contact us:  <a href="mailto: quizzly.gmail.com">quizzly.gmail.com</a></p>
 </html>
