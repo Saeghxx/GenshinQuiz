@@ -1,0 +1,22 @@
+
+/* Стилі можна буде видалити, це я хотіла чекнути чи все працює. *{cursor:...} не видаляй*/
+*{
+    cursor: url('gencur.png') 0 0, auto !important;
+}
+body{
+    background-image: url('genb.jpeg') !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+button, textarea, input, select{
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    background-color: #ffffff !important;
+    color: rgb(0, 0, 0) !important;
+    border: 2px solid black !important;
+}
+a, h1, h2, h3, h4, h5, h6, p, label{
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    mix-blend-mode: exclusion !important;
+    color:#ffffff !important;
+}

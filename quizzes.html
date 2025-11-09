@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenshinQuiz - Quizzes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+           <a href="/Users/38050/Documents/GitHub/GenshinQuiz/home.html">Home</a>
+            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/quizzes.html">Quizzes</a>
+            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/create.html">Create</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="app"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 GenshinQuiz. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:genshinquiz@gmail.com">genshinquiz@gmail.com</a></p>
+    </footer>
+
+    <script>
+    const app = document.getElementById('app');
+
+    // Load quizzes
+    let quizzes = JSON.parse(localStorage.getItem('quizzes') || '[]');
+
+    function showQuizList() {
+        app.innerHTML = '<h3>Available Quizzes</h3>';
+        if (!quizzes.length) {
+            app.innerHTML += '<p>No quizzes found. Create some first.</p>';
+            return;
+        }
+
+        const listDiv = document.createElement('div');
+        listDiv.className = 'quiz-list';
+
+        quizzes.forEach((quiz) => {
+            const item = document.createElement('div');
+            item.className = 'quiz-item';
+            item.innerHTML = `<h3>${quiz.title}</h3><p>${quiz.description}</p>`;
+            const btn = document.createElement('button');
+            btn.textContent = 'Take Quiz';
+            btn.addEventListener('click', () => showQuiz(quiz));
+            item.appendChild(btn);
+            listDiv.appendChild(item);
+        });
+
+        app.appendChild(listDiv);
+    }
+
+    function showQuiz(quiz) {
+        app.innerHTML = `<h2>${quiz.title}</h2><p>${quiz.description}</p>`;
+        const quizContainer = document.createElement('div');
+        quizContainer.id = 'quizContainer';
+        app.appendChild(quizContainer);
+
+        quiz.questions.forEach((question) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question';
+            const qTitle = document.createElement('h3');
+            qTitle.textContent = question.questionText;
+            qDiv.appendChild(qTitle);
+
+            question.choices.forEach(choice => {
+                const cDiv = document.createElement('div');
+                cDiv.className = 'choice';
+                cDiv.textContent = choice.text;
+                cDiv.addEventListener('click', () => {
+                    qDiv.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+                    cDiv.classList.add('selected');
+                });
+                qDiv.appendChild(cDiv);
+            });
+
+            quizContainer.appendChild(qDiv);
+        });
+
+        const submitBtn = document.createElement('button');
+        submitBtn.className = 'button';
+        submitBtn.textContent = 'Submit Quiz';
+        submitBtn.addEventListener('click', () => submitQuiz(quiz, quizContainer, submitBtn));
+        app.appendChild(submitBtn);
+
+        const backBtn = document.createElement('button');
+        backBtn.className = 'button';
+        backBtn.textContent = 'Back to Quiz List';
+        backBtn.addEventListener('click', showQuizList);
+        app.appendChild(backBtn);
+
+        const resultDiv = document.createElement('div');
+        resultDiv.id = 'result';
+        app.appendChild(resultDiv);
+    }
+
+    function submitQuiz(quiz, container, submitBtn) {
+        let score = 0;
+        quiz.questions.forEach((question, qIndex) => {
+            const qDiv = container.children[qIndex];
+            const selected = qDiv.querySelector('.choice.selected');
+            if (selected) {
+                const selectedText = selected.textContent;
+                if (question.choices.find(c => c.text === selectedText && c.isCorrect)) score++;
+            }
+        });
+
+        // Sort grading descending by minScore
+        const sortedGrading = [...quiz.grading].sort((a, b) => b.minScore - a.minScore);
+        let grade = "N/A";
+        for (const g of sortedGrading) {
+            if (score >= g.minScore) {
+                grade = g.mark;
+                break;
+            }
+        }
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `<p>You scored <b>${score}</b> out of <b>${quiz.questions.length}</b>.<br>Your grade: <b>${grade}</b></p>`;
+
+        // Highlight correct answers
+        quiz.questions.forEach((question, qIndex) => {
+            const qDiv = container.children[qIndex];
+            question.choices.forEach(choice => {
+                const div = Array.from(qDiv.querySelectorAll('.choice')).find(d => d.textContent === choice.text);
+                if (choice.isCorrect) div.classList.add('correct');
+            });
+        });
+
+        submitBtn.disabled = true;
+    }
+
+    showQuizList();
+    </script>
+</body>
+</html>
