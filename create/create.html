@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenshinQuiz - Create</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/home.html">Home</a>
+            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/quizzes.html">Quizzes</a>
+            <a href="/Users/38050/Documents/GitHub/GenshinQuiz/create.html">Create</a>
+        </nav>
+    </header>
+
+    <main>
+        <h3>Create a new quiz</h3>
+        <div class="quiz-form">
+            <label>Quiz Title:</label><br>
+            <input type="text" id="quizTitle" placeholder="Enter quiz title" /><br>
+
+            <label>Description:</label><br>
+            <textarea id="quizDescription" rows="3" placeholder="Enter quiz description"></textarea>
+
+            <div id="questionsContainer"></div>
+            <button id="addQuestionBtn" class="small-btn">+ Add Question</button>
+
+            <!-- Grading section -->
+            <div class="grading">
+                <h3>Set Grade Boundaries</h3>
+                <div id="gradingContainer"></div>
+                <button id="addGradeBtn" class="small-btn">+ Add Grade Level</button>
+            </div>
+
+            <div style="text-align: left; margin-top: 20px;">
+                <button id="saveQuizBtn">Save Quiz</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 GenshinQuiz. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:genshinquiz@gmail.com">genshinquiz@gmail.com</a></p>
+    </footer>
+</body>
+</html>
