@@ -1,3 +1,4 @@
-*{
-    cursor: url('/Users/38050/Documents/GitHub/GenshinQuiz/cursor/gencur.png'), pointer;
-};
+/* cursor/cursor.css */
+* {
+    cursor: url("gencur.png"), pointer;
+}
