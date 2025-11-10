@@ -1,25 +1,18 @@
-// script.js
-document.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('myAudio');
-    const image = document.getElementById('musicToggleImage');
-    let isPlaying = false; 
+const btn = document.querySelector('#playButton');
+let isMuted = false;
 
-    if (audio && image) {
-        image.addEventListener('click', () => {
-            if (isPlaying) {
-                audio.pause();
-                audio.currentTime = 0; 
-                isPlaying = false;
-            } else {
-                audio.play()
-                    .then(() => {
-                        isPlaying = true;
-                    })
-                    .catch(error => {
-                        // Потрібно, оскільки браузери блокують автоматичне відтворення
-                        alert("Auto-play blocked. Click anywhere to enable music.");
-                    });
-            }
-        });
+btn.addEventListener('click', () => {
+    const audio = document.querySelector("#playAudio");
+
+    // when button is clicked, will mute/unmute the audio
+    if (!isMuted) {
+        audio.volume = 1;
+        isMuted = true;
     }
+    else {
+        audio.volume = 0;
+        isMuted = false;
+    }
+    audio.play();
+    console.log("pressed");
 });
