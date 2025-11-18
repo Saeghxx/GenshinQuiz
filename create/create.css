@@ -86,98 +86,121 @@ main {
     transform: scale(1.05);
 }
 
-/* ------------------- ГЛОБАЛЬНІ СТИЛІ ФОРМ ТА КНОПОК --------------------- */
+/* ------------------- ГЛОБАЛЬНІ СТИЛІ --------------------- */
 input[type="text"], textarea, input[type="number"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0 15px 0;
     box-sizing: border-box;
-    border: 1px solid #555;
-    background-color: #333333;
-    color: white;
-    border-radius: 4px;
-    transition: border-color 0.3s;
+    border: 2px solid rgba(170, 120, 255, 0.5);
+    background: rgba(25, 15, 45, 0.55);
+    color: #e8d9ff;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    font-family: "Poppins", sans-serif;
+    transition: 0.25s ease;
 }
+
 input:focus, textarea:focus {
-    border-color: #007bff;
+    border-color: #d08bff;
+    box-shadow: 0 0 10px rgba(190, 90, 255, 0.8);
     outline: none;
 }
+
+/* ------------------- КНОПКИ --------------------- */
 #saveQuizBtn, .small-btn, .mark-btn {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #ff6be7, #a974ff, #6a8bff);
     color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     margin-top: 10px;
-    transition: background-color 0.2s;
-}
-#saveQuizBtn:hover, .small-btn:hover {
-    background-color: #0056b3;
+    transition: 0.25s ease;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
 }
 
-/* ------------------- CREATE.HTML (ФОРМА СТВОРЕННЯ ТЕСТУ) --------------------- */
+#saveQuizBtn:hover, .small-btn:hover, .mark-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(175, 80, 255, 0.9);
+}
+
+.mark-btn.correct {
+    background: linear-gradient(135deg, #32ff7e, #2bd46e);
+    box-shadow: 0 0 12px rgba(50, 255, 120, 0.7);
+}
+
+/* ------------------- CREATE.HTML ФОРМА --------------------- */
 .quiz-form {
-    max-width: 800px;
+    max-width: 850px;
     margin: 40px auto;
-    padding: 20px;
-    background-color: #2a2a2a;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    padding: 25px;
+    background: rgba(15, 10, 35, 0.6);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(180, 120, 255, 0.4);
+    box-shadow: 0 0 25px rgba(150, 90, 255, 0.4);
+    color: #e8d9ff;
+    font-family: "Poppins", sans-serif;
 }
+
+/* ------------------- Блок питання --------------------- */
 .question {
-    border: 1px solid #444;
-    padding: 15px;
+    border: 2px solid rgba(160, 90, 255, 0.4);
+    padding: 18px;
     margin-bottom: 25px;
-    border-radius: 8px;
-    background-color: #202020;
+    border-radius: 14px;
+    background: rgba(25, 15, 45, 0.55);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 15px rgba(120, 60, 255, 0.25);
 }
+
 .choice {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
-.choice input[type="text"] {
-    margin-right: 10px;
-    flex-grow: 1;
-}
+
+/* ------------------- Кнопки видалення --------------------- */
 .remove-question, .remove-choice, .remove-grade {
-    background-color: #dc3545;
+    background: linear-gradient(135deg, #ff4f7b, #d62d5b);
     color: white;
     border: none;
-    padding: 5px 8px;
-    border-radius: 3px;
+    padding: 6px 10px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 8px;
+    font-family: "Poppins", sans-serif;
+    transition: 0.2s;
 }
+
 .remove-question:hover, .remove-choice:hover, .remove-grade:hover {
-    background-color: #c82333;
-}
-.mark-btn {
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    padding: 8px;
-    border-radius: 3px;
-    margin-left: 10px;
-    font-weight: bold;
-    min-width: 100px;
-}
-.mark-btn.correct {
-    background-color: #28a745;
+    transform: scale(1.12);
+    box-shadow: 0 0 12px rgba(255, 70, 120, 0.8);
 }
 
 /* ------------------- FOOTER --------------------- */
 footer {
     text-align: center;
     padding: 20px;
-    border-top: 1px solid #444;
-    color: #aaa;
+    background: rgba(10, 5, 25, 0.6);
+    border-top: 2px solid rgba(180, 120, 255, 0.3);
+    color: #c7b6ff;
+    font-family: "Poppins", sans-serif;
+    text-shadow: 0 0 6px rgba(160, 120, 255, 0.5);
 }
+
 footer a {
-    color: #007bff;
+    color: #d08bff;
     text-decoration: none;
 }
+footer a:hover {
+    text-shadow: 0 0 10px rgba(210, 130, 255, 0.9);
+}
+
 
 /* ------------------- MEDIA QUERIES --------------------- */
 @media (max-width: 1300px) {
@@ -195,4 +218,91 @@ footer a {
     main {
         padding-top: 80px;
     }
+}
+
+.quiz-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+/* Блок тесту */
+.quiz-item {
+  background: rgba(20, 15, 40, 0.55); /* темний, напівпрозорий */
+  border: 2px solid rgba(200, 120, 255, 0.7); /* фіолетова рамка */
+  border-radius: 18px;
+  padding: 20px;
+  width: 260px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px); /* ефект скла */
+  box-shadow: 0 0 18px rgba(155, 70, 255, 0.35);
+}
+
+/* Hover */
+.quiz-item:hover {
+  transform: scale(1.06);
+  border-color: #d08bff;
+  box-shadow: 0 0 25px rgba(160, 75, 255, 0.6);
+}
+
+/* Назва тесту */
+.quiz-item h3 {
+  font-family: "Poppins", sans-serif;
+  color: #dba0ff; /* ніжний фіолетовий */
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 7px rgba(190, 100, 255, 0.7);
+}
+
+/* Опис */
+.quiz-item p {
+  font-family: "Poppins", sans-serif;
+  color: #8ab4ff; /* синюватий */
+  font-size: 1rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 6px rgba(100, 140, 255, 0.6);
+}
+
+/* Кнопка Start */
+.quiz-item button {
+  background: linear-gradient(135deg, #ff6be7, #a974ff, #6a8bff);
+  border: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
+}
+
+.quiz-item button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(255, 120, 240, 0.9);
+}
+
+/* Кнопки Submit та Back */
+.submit-btn, .back-btn {
+  background: linear-gradient(135deg, #8c5eff, #ff5cd7, #6aa8ff);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: 0.2s ease;
+  margin: 10px 6px;
+  letter-spacing: 0.6px;
+}
+
+.submit-btn:hover, .back-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 14px rgba(210, 110, 255, 0.8);
 }
