@@ -65,4 +65,3 @@ quizzes.forEach((quiz, quizIndex) => {
     quizBlock.appendChild(submitBtn);
     container.appendChild(quizBlock);
 });
-

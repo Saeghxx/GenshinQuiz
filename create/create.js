@@ -1,22 +1,18 @@
-// Отримуємо елементи
 const questionsContainer = document.getElementById("questionsContainer");
 const gradingContainer = document.getElementById("gradingContainer");
 const addQuestionBtn = document.getElementById("addQuestionBtn");
 const addGradeBtn = document.getElementById("addGradeBtn");
 const saveQuizBtn = document.getElementById("saveQuizBtn");
 
-// Додаємо слухачі подій
 addQuestionBtn.addEventListener("click", addQuestion);
 addGradeBtn.addEventListener("click", addGrade);
 saveQuizBtn.addEventListener("click", saveQuiz);
 
-// --- Add Question ---
 function addQuestion() {
-    // ... ваш код функції addQuestion ...
     const questionDiv = document.createElement("div");
     questionDiv.classList.add("question");
     
-    // ... решта коду ...
+  
     questionDiv.innerHTML = `
         <label>Question:</label><br>
         <input type="text" class="questionText" placeholder="Enter question text">
@@ -34,14 +30,12 @@ function addQuestion() {
     removeBtn.addEventListener("click", () => questionDiv.remove());
 }
 
-// --- Add Choice ---
 function addChoice(questionDiv) {
-    // ... ваш код функції addChoice ...
+    
     const choicesDiv = questionDiv.querySelector(".choices");
     const choiceDiv = document.createElement("div");
     choiceDiv.classList.add("choice");
 
-    // ... решта коду ...
     choiceDiv.innerHTML = `
         <input type="text" placeholder="Choice text">
         <button class="mark-btn">Mark Correct</button>
@@ -60,13 +54,11 @@ function addChoice(questionDiv) {
     choicesDiv.appendChild(choiceDiv);
 }
 
-// --- Add Grade ---
 function addGrade() {
-    // ... ваш код функції addGrade ...
+    
     const gradeDiv = document.createElement("div");
     gradeDiv.classList.add("grade-item");
 
-    // ... решта коду ...
     gradeDiv.innerHTML = `
         <label>Score ≥</label>
         <input type="number" min="0" placeholder="">
@@ -80,9 +72,8 @@ function addGrade() {
     gradingContainer.appendChild(gradeDiv);
 }
 
-// --- Save Quiz ---
 function saveQuiz() {
-    // ... ваш код функції saveQuiz, включаючи збереження у localStorage ...
+   
     const title = document.getElementById("quizTitle").value.trim();
     const description = document.getElementById("quizDescription").value.trim();
 
@@ -110,12 +101,11 @@ function saveQuiz() {
     quiz.grading.sort((a, b) => b.minScore - a.minScore);
 
     if (quiz.questions.length > 0 && title) {
-        // Зберігаємо тест у LocalStorage
+      
         const quizzes = JSON.parse(localStorage.getItem("quizzes") || "[]");
         quizzes.push(quiz);
         localStorage.setItem("quizzes", JSON.stringify(quizzes));
         
-        // Перенаправляємо користувача
         window.location.href = "../quizzes.html"; 
     } else {
         alert("Будь ласка, введіть назву та додайте хоча б одне питання.");

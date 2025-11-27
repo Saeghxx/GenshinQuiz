@@ -1,4 +1,3 @@
-// --- Mondstadt QUIZ ready for quizzes.js ---
 const quizzes = [
     {
         title: "Mondstadt Quiz",

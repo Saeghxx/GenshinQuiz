@@ -1,9 +1,30 @@
-// quizzes.js
 const app = document.getElementById('app');
 let quizzes = JSON.parse(localStorage.getItem('quizzes') || '[]');
 
 function showQuizList() {
-    app.innerHTML = '<h3>Available Quizzes</h3>';
+    app.innerHTML = `
+    <div style="
+        padding: 16px 24px;
+        border-radius: 16px;
+        background: rgba(40, 10, 60, 0.40);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 2px solid rgba(220, 120, 255, 0.6);
+        width: fit-content;
+        margin: 0 auto 20px;
+        text-align: center;
+    ">
+        <h3 style="
+            margin: 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #ffc7f9;
+            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(240,0,220,0.55), 0 2px 10px rgba(0,0,0,0.6), 0 0 15px rgba(90,130,255,0.6);
+            font-weight: 600;
+        ">Available Quizzes</h3>
+    </div>
+    `;
 
     if (!quizzes.length) {
         app.innerHTML += '<p>No quizzes found. Create some first.</p>';
@@ -24,7 +45,6 @@ function showQuizList() {
 
         const btn = document.createElement('button');
         btn.textContent = 'Take Quiz';
-        // тут відкриваємо конкретний тест після кліку
         btn.addEventListener('click', () => showQuiz(quiz));
 
         item.appendChild(btn);
@@ -95,7 +115,6 @@ function submitQuiz(quiz) {
 
         const qDiv = quizContainer.children[index];
 
-        // очищення стилів
         qDiv.querySelectorAll(".option").forEach(o => o.classList.remove("correct", "wrong"));
 
         const isCorrect =
@@ -104,7 +123,6 @@ function submitQuiz(quiz) {
 
         if (isCorrect) score++;
 
-        // підсвітка
         q.options.forEach((opt) => {
             const optDiv = [...qDiv.querySelectorAll(".option")]
                 .find(d => d.querySelector("input").value == opt.id);
@@ -124,5 +142,5 @@ function submitQuiz(quiz) {
     app.appendChild(resultDiv);
 }
 
-// запуск
-showQuizList();
+showQuizList(); 
+

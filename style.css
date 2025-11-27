@@ -1,4 +1,3 @@
-/* ------------------- БАЗОВІ НАЛАШТУВАННЯ ТА СКИНАННЯ --------------------- */
 body {
     margin: 0;
     padding: 0;
@@ -8,7 +7,6 @@ body {
     min-height: 100vh;
 }
 
-/* ------------------- ФОНОВЕ ВІДЕО/ЗОБРАЖЕННЯ --------------------- */
 #section-1 {
     position: fixed;
     width: 100%;
@@ -25,7 +23,6 @@ body {
     filter: brightness(0.6);
 }
 
-/* ------------------- HEADER І NAV BAR --------------------- */
 #nav-bar {
     position: fixed;
     top: 0;
@@ -67,7 +64,6 @@ main {
     position: relative;
 }
 
-/* ------------------- МУЗИЧНА ІКОНКА --------------------- */
 #musicToggleImage {
     position: fixed;
     top: 90px;
@@ -86,7 +82,6 @@ main {
     transform: scale(1.05);
 }
 
-/* ------------------- ГЛОБАЛЬНІ СТИЛІ ФОРМ ТА КНОПОК --------------------- */
 input[type="text"], textarea, input[type="number"] {
     width: 100%;
     padding: 10px;
@@ -116,7 +111,6 @@ input:focus, textarea:focus {
     background-color: #0056b3;
 }
 
-/* ------------------- CREATE.HTML (ФОРМА СТВОРЕННЯ ТЕСТУ) --------------------- */
 .quiz-form {
     max-width: 800px;
     margin: 40px auto;
@@ -167,7 +161,6 @@ input:focus, textarea:focus {
     background-color: #28a745;
 }
 
-/* ------------------- FOOTER --------------------- */
 footer {
     text-align: center;
     padding: 20px;
@@ -179,7 +172,6 @@ footer a {
     text-decoration: none;
 }
 
-/* ------------------- MEDIA QUERIES --------------------- */
 @media (max-width: 1300px) {
     header nav a {
         padding: 5px 10px;
