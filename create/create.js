@@ -8,15 +8,17 @@ addQuestionBtn.addEventListener("click", addQuestion);
 addGradeBtn.addEventListener("click", addGrade);
 saveQuizBtn.addEventListener("click", saveQuiz);
 
+// ------------------------- ADD QUESTION ----------------------------
+
 function addQuestion() {
     const questionDiv = document.createElement("div");
     questionDiv.classList.add("question");
-    
-  
+
     questionDiv.innerHTML = `
         <label>Question:</label><br>
         <input type="text" class="questionText" placeholder="Enter question text">
         <button class="remove-question">Remove</button>
+        
         <div class="choices"></div>
         <button class="small-btn addChoiceBtn">+ Add Choice</button>
     `;
@@ -26,13 +28,16 @@ function addQuestion() {
     const addChoiceBtn = questionDiv.querySelector(".addChoiceBtn");
     addChoiceBtn.addEventListener("click", () => addChoice(questionDiv));
 
-    const removeBtn = questionDiv.querySelector(".remove-question");
-    removeBtn.addEventListener("click", () => questionDiv.remove());
+    questionDiv.querySelector(".remove-question").addEventListener("click", () => {
+        questionDiv.remove();
+    });
 }
 
+// ------------------------- ADD CHOICE ----------------------------
+
 function addChoice(questionDiv) {
-    
     const choicesDiv = questionDiv.querySelector(".choices");
+
     const choiceDiv = document.createElement("div");
     choiceDiv.classList.add("choice");
 
@@ -46,68 +51,97 @@ function addChoice(questionDiv) {
     const removeChoiceBtn = choiceDiv.querySelector(".remove-choice");
 
     markBtn.addEventListener("click", () => {
+        // only one correct answer per question
         questionDiv.querySelectorAll(".mark-btn").forEach(btn => btn.classList.remove("correct"));
         markBtn.classList.add("correct");
     });
 
-    removeChoiceBtn.addEventListener("click", () => choiceDiv.remove());
+    removeChoiceBtn.addEventListener("click", () => {
+        choiceDiv.remove();
+    });
+
     choicesDiv.appendChild(choiceDiv);
 }
 
+// ------------------------- ADD GRADE ----------------------------
+
 function addGrade() {
-    
     const gradeDiv = document.createElement("div");
     gradeDiv.classList.add("grade-item");
 
     gradeDiv.innerHTML = `
         <label>Score ≥</label>
-        <input type="number" min="0" placeholder="">
+        <input type="number" min="0">
         <label>Mark:</label>
-        <input type="text" placeholder="">
+        <input type="text">
         <button class="remove-grade">Remove</button>
     `;
 
-    const removeGradeBtn = gradeDiv.querySelector(".remove-grade");
-    removeGradeBtn.addEventListener("click", () => gradeDiv.remove());
+    gradeDiv.querySelector(".remove-grade").addEventListener("click", () => {
+        gradeDiv.remove();
+    });
+
     gradingContainer.appendChild(gradeDiv);
 }
 
+// ------------------------- SAVE QUIZ (FULLY FIXED) ----------------------------
+
 function saveQuiz() {
-   
     const title = document.getElementById("quizTitle").value.trim();
     const description = document.getElementById("quizDescription").value.trim();
 
-    const quiz = { title, description, questions: [], grading: [] };
+    if (!title) {
+        alert("Please enter a quiz title.");
+        return;
+    }
 
+    const quiz = {
+        title,
+        description,
+        questions: []
+    };
+
+    // ---- Convert questions to correct quizzes.js format ----
     document.querySelectorAll(".question").forEach(qDiv => {
-        const questionText = qDiv.querySelector(".questionText").value.trim();
-        const choices = [];
+        const text = qDiv.querySelector(".questionText").value.trim();
+        if (!text) return;
+
+        let question = {
+            text,
+            type: "single",
+            options: []
+        };
+
+        let optionId = 1;
 
         qDiv.querySelectorAll(".choice").forEach(cDiv => {
-            const text = cDiv.querySelector("input[type='text']").value.trim();
+            const choiceText = cDiv.querySelector("input[type='text']").value.trim();
             const isCorrect = cDiv.querySelector(".mark-btn").classList.contains("correct");
-            if (text) choices.push({ text, isCorrect });
+
+            if (!choiceText) return;
+
+            question.options.push({
+                id: optionId++,
+                text: choiceText,
+                correct: isCorrect
+            });
         });
 
-        if (questionText && choices.length > 0) quiz.questions.push({ questionText, choices });
+        if (question.options.length > 0) {
+            quiz.questions.push(question);
+        }
     });
 
-    gradingContainer.querySelectorAll(".grade-item").forEach(gDiv => {
-        const minScore = Number(gDiv.querySelector("input[type='number']").value);
-        const mark = gDiv.querySelector("input[type='text']").value.trim();
-        if (!isNaN(minScore) && mark) quiz.grading.push({ minScore, mark });
-    });
-
-    quiz.grading.sort((a, b) => b.minScore - a.minScore);
-
-    if (quiz.questions.length > 0 && title) {
-      
-        const quizzes = JSON.parse(localStorage.getItem("quizzes") || "[]");
-        quizzes.push(quiz);
-        localStorage.setItem("quizzes", JSON.stringify(quizzes));
-        
-        window.location.href = "../quizzes.html"; 
-    } else {
-        alert("Будь ласка, введіть назву та додайте хоча б одне питання.");
+    if (quiz.questions.length === 0) {
+        alert("Add at least one question and one choice.");
+        return;
     }
+
+    // ---- Save to localStorage ----
+    const quizzes = JSON.parse(localStorage.getItem("quizzes") || "[]");
+    quizzes.push(quiz);
+    localStorage.setItem("quizzes", JSON.stringify(quizzes));
+
+    // ---- Redirect to quizzes page ----
+    window.location.href = "../quiz/quizzes.html";
 }
