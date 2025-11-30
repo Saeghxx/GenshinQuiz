@@ -93,11 +93,15 @@ function showQuiz(quiz) {
     const submitBtn = document.createElement('button');
     submitBtn.textContent = "Submit";
     submitBtn.className = "submit-btn";
+    submitBtn.style.display = "block";
+    submitBtn.style.margin = "20px auto";
     submitBtn.addEventListener('click', () => submitQuiz(quiz));
 
     const backBtn = document.createElement('button');
     backBtn.textContent = "Back";
     backBtn.className = "back-btn";
+    backBtn.style.display = "block";
+    backBtn.style.margin = "10px auto";
     backBtn.addEventListener('click', showQuizList);
 
     app.appendChild(submitBtn);
@@ -114,7 +118,6 @@ function submitQuiz(quiz) {
         const selectedIds = selectedInputs.map(inp => parseInt(inp.value));
 
         const qDiv = quizContainer.children[index];
-
         qDiv.querySelectorAll(".option").forEach(o => o.classList.remove("correct", "wrong"));
 
         const isCorrect =
@@ -131,26 +134,81 @@ function submitQuiz(quiz) {
             else if (selectedIds.includes(opt.id)) optDiv.classList.add("wrong");
         });
     });
-let mark = ["Your score: " + score + " out of " + quiz.questions.length];
 
-if (quiz.grades && quiz.grades.length > 0) {
-    for (let g of quiz.grades) {
-        if (score >= g.minScore) {
-            mark = g.markText;
-            break;
+    let mark = "Your score: " + score + " out of " + quiz.questions.length;
+
+    if (quiz.grades && quiz.grades.length > 0) {
+        for (let g of quiz.grades) {
+            if (score >= g.minScore) {
+                mark = g.markText;
+                break;
+            }
         }
     }
+
+    showModalResult(mark);
 }
 
-    const resultDiv = document.createElement("div");
-    resultDiv.className = "result-box";
-    resultDiv.innerHTML = `
-        <h3>Your Result:</h3>
-        <p>${mark}</p>
+function showModalResult(text) {
+    const overlay = document.createElement("div");
+    overlay.id = "modalOverlay";
+    overlay.style.position = "fixed";
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.background = "rgba(0,0,0,0.6)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "999";
+
+    const modal = document.createElement("div");
+    modal.style.background = "rgba(15, 18, 35, 0.55)";
+    modal.style.backdropFilter = "blur(10px)";
+    modal.style.webkitBackdropFilter = "blur(10px)";
+    modal.style.borderRadius = "16px";
+    modal.style.padding = "26px 34px";
+    modal.style.maxWidth = "720px";
+    modal.style.width = "90%";
+    modal.style.textAlign = "center";
+    modal.style.border = "1px solid rgba(255, 160, 245, 0.35)";
+    modal.style.boxShadow = "0 0 18px rgba(255, 140, 249, 0.18), inset 0 0 12px rgba(249, 200, 255, 0.06)";
+    modal.style.position = "relative";
+    modal.style.color = "#fff";
+
+    const closeBtn = document.createElement("div");
+    closeBtn.textContent = "✖";
+    closeBtn.style.position = "absolute";
+    closeBtn.style.right = "10px";
+    closeBtn.style.top = "10px";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.fontSize = "20px";
+    closeBtn.style.color = "#ffbaff";
+
+    closeBtn.addEventListener("click", () => overlay.remove());
+
+    modal.innerHTML += `
+        <h2 style="
+            margin: 0 0 10px 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #ffc7f9;
+            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(240,0,220,0.55), 0 2px 10px rgba(0,0,0,0.6);
+            font-weight: 600;
+        ">Your Result</h2>
+        <p style="
+            font-size: 18px;
+            color: #ffffff;
+            opacity: 0.9;
+            text-shadow: 0 0 8px rgba(247, 175, 238, 0.3);
+            margin: 0;
+        ">${text}</p>
     `;
 
-    app.appendChild(resultDiv);
+    modal.appendChild(closeBtn);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
 }
-
-showQuizList(); 
-
+showQuizList();

@@ -225,7 +225,7 @@ footer a:hover {
   text-align: center;
   cursor: pointer;
   transition: all 0.25s ease;
-  backdrop-filter: blur(8px); /* ефект скла */
+  backdrop-filter: blur(8px); 
   box-shadow: 0 0 18px rgba(155, 70, 255, 0.35);
 }
 
@@ -288,3 +288,4 @@ footer a:hover {
   transform: scale(1.08);
   box-shadow: 0 0 14px rgba(210, 110, 255, 0.8);
 }
+

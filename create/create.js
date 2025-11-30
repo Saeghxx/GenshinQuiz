@@ -8,8 +8,6 @@ addQuestionBtn.addEventListener("click", addQuestion);
 addGradeBtn.addEventListener("click", addGrade);
 saveQuizBtn.addEventListener("click", saveQuiz);
 
-// ------------------------- ADD QUESTION ----------------------------
-
 function addQuestion() {
     const questionDiv = document.createElement("div");
     questionDiv.classList.add("question");
@@ -33,8 +31,6 @@ function addQuestion() {
     });
 }
 
-// ------------------------- ADD CHOICE ----------------------------
-
 function addChoice(questionDiv) {
     const choicesDiv = questionDiv.querySelector(".choices");
 
@@ -51,7 +47,7 @@ function addChoice(questionDiv) {
     const removeChoiceBtn = choiceDiv.querySelector(".remove-choice");
 
     markBtn.addEventListener("click", () => {
-        // only one correct answer per question
+
         questionDiv.querySelectorAll(".mark-btn").forEach(btn => btn.classList.remove("correct"));
         markBtn.classList.add("correct");
     });
@@ -62,8 +58,6 @@ function addChoice(questionDiv) {
 
     choicesDiv.appendChild(choiceDiv);
 }
-
-// ------------------------- ADD GRADE ----------------------------
 
 function addGrade() {
     const gradeDiv = document.createElement("div");
@@ -84,7 +78,6 @@ function addGrade() {
     gradingContainer.appendChild(gradeDiv);
 }
 
-// ------------------------- SAVE QUIZ (FULLY FIXED) ----------------------------
 
 function saveQuiz() {
     const title = document.getElementById("quizTitle").value.trim();
@@ -114,9 +107,8 @@ document.querySelectorAll(".grade-item").forEach(g => {
     }
 });
 
-// sort high → low
 quiz.grades.sort((a, b) => b.minScore - a.minScore);
-    // ---- Convert questions to correct quizzes.js format ----
+    
     document.querySelectorAll(".question").forEach(qDiv => {
         const text = qDiv.querySelector(".questionText").value.trim();
         if (!text) return;
@@ -152,11 +144,9 @@ quiz.grades.sort((a, b) => b.minScore - a.minScore);
         return;
     }
 
-    // ---- Save to localStorage ----
     const quizzes = JSON.parse(localStorage.getItem("quizzes") || "[]");
     quizzes.push(quiz);
     localStorage.setItem("quizzes", JSON.stringify(quizzes));
 
-    // ---- Redirect to quizzes page ----
     window.location.href = "../quiz/quizzes.html";
 }
