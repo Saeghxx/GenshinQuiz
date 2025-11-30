@@ -131,12 +131,22 @@ function submitQuiz(quiz) {
             else if (selectedIds.includes(opt.id)) optDiv.classList.add("wrong");
         });
     });
+let mark = ["Your score: " + score + " out of " + quiz.questions.length];
+
+if (quiz.grades && quiz.grades.length > 0) {
+    for (let g of quiz.grades) {
+        if (score >= g.minScore) {
+            mark = g.markText;
+            break;
+        }
+    }
+}
 
     const resultDiv = document.createElement("div");
     resultDiv.className = "result-box";
     resultDiv.innerHTML = `
         <h3>Your Result:</h3>
-        <p>${score} / ${quiz.questions.length}</p>
+        <p>${mark}</p>
     `;
 
     app.appendChild(resultDiv);

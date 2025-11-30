@@ -22,16 +22,6 @@
         <img id="playButton" src="../resources/Paimon.webp" alt="this is the music button" height="50" width = "50">
         <audio id="playAudio" src="../resources/Inazuma.mp3" type="audio/mp3"></audio>  
       </div>
-      <script>
-        document.getElementById('playButton').addEventListener('click', function() {
-            const audio = document.getElementById('playAudio');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        });
-    </script>
         <nav>
            <a href="C:\Users\38050\Documents\GitHub\GenshinQuiz\index.html">Home</a> 
             <a href="C:\Users\38050\Documents\GitHub\GenshinQuiz\quiz\quizzes.html">Quizzes</a> 
@@ -56,3 +46,13 @@
 
 <script src="quizzes.js"></script>
 <script src="../test.js"></script>
+<script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            const audio = document.getElementById('playAudio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+    </script>

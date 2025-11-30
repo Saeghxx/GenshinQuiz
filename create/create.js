@@ -100,7 +100,22 @@ function saveQuiz() {
         description,
         questions: []
     };
+quiz.grades = [];
 
+document.querySelectorAll(".grade-item").forEach(g => {
+    const minScore = parseInt(g.querySelector("input[type='number']").value);
+    const markText = g.querySelector("input[type='text']").value.trim();
+
+    if (!isNaN(minScore) && markText) {
+        quiz.grades.push({
+            minScore,
+            markText
+        });
+    }
+});
+
+// sort high → low
+quiz.grades.sort((a, b) => b.minScore - a.minScore);
     // ---- Convert questions to correct quizzes.js format ----
     document.querySelectorAll(".question").forEach(qDiv => {
         const text = qDiv.querySelector(".questionText").value.trim();
