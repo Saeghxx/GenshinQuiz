@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenshinQuiz - Quizzes</title>
-
-    <link rel="stylesheet" href="../cursor/cursor.css">
-    <link rel="stylesheet" href="../create/create.css">
+    <title>GenshinQuiz - Create</title>
+   <link rel="stylesheet" href="C:\Users\38050\Documents\GitHub\GenshinQuiz\style.css">
+    <link rel="stylesheet" href="C:\Users\38050\Documents\GitHub\GenshinQuiz\create\create.css">
+    <link rel="stylesheet" href="C:\Users\38050\Documents\GitHub\GenshinQuiz\cursor\cursor.css">
 </head>
-
-<div id="section-2">
-    <video id="video" autoplay loop muted style="position: fixed; top: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
-        <source class="genvideo" src="../resources/sakuratree.mp4" type="video/mp4">
-    </video>
-</div>
-
 <body>
-<header id="nav-bar">
-    <div id="one">
-        <img id="playButton" src="../resources/Paimon.webp" alt="this is the music button" height="50" width="50">
-        <audio id="playAudio" src="../resources/Inazuma.mp3" type="audio/mp3"></audio>
-    </div>
+     <div id="section-2">
+         <video id = "video" autoplay loop muted style="position: fixed; top: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+<source class="genvideo" src="../resources/sakuratree.mp4" type="video/mp4">
 
-    <nav>
-        <a href="../index.html">Home</a> 
-        <a href="./quizzes.html">Quizzes</a> 
-        <a href="../create/create.html">Create</a> 
-    </nav>
-</header>
+        </video>
+
+    </div>
+    <header id="nav-bar">
+        
+       <div id="one">
+        <img id="playButton" src="../resources/Paimon.webp" alt="this is the music button" height="50" width = "50">
+        <audio id="playAudio" src="../resources/Inazuma.mp3" type="audio/mp3"></audio>  
+      </div>
+      <script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            const audio = document.getElementById('playAudio');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+    </script>
+        <nav>
+           <a href="C:\Users\38050\Documents\GitHub\GenshinQuiz\index.html">Home</a> 
+            <a href="C:\Users\38050\Documents\GitHub\GenshinQuiz\quiz\quizzes.html">Quizzes</a> 
+            <a href="C:\Users\38050\Documents\GitHub\GenshinQuiz\create\create.html">Create</a> 
+        </nav>
+    </header>
+
 
 <main>
     <div id="app"></div>
@@ -44,4 +55,4 @@
 </footer>
 
 <script src="quizzes.js"></script>
-<script src="test.js"></script>
+<script src="../test.js"></script>
