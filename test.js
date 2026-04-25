@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (localStorage.getItem("quizzes")) return;
 const quizzes = [
     {
         title: "Mondstadt Quiz",
@@ -101,7 +104,7 @@ This song is sung by:`,
 },
 {
     title: "Li Yue Quiz",
-        description: "A lore-based Liyue knowledge test.",
+        description: "A lore-based Li Yue knowledge <br>test.",
         questions: [
             {
                 text: "Who created the Blackcliff series weapon?",
@@ -292,5 +295,5 @@ This song is sung by:`,
         ],
     }
 ];
-
 localStorage.setItem("quizzes", JSON.stringify(quizzes));
+});

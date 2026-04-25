@@ -1,17 +1,18 @@
-const btn = document.querySelector('#playButton');
-let isMuted = false;
+document.addEventListener("DOMContentLoaded", () => {
 
-btn.addEventListener('click', () => {
-    const audio = document.querySelector("#playAudio");
+      document.getElementById('playButton').addEventListener('click', function () {
+        const audio = document.getElementById('playAudio');
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    });
+    window.addEventListener('scroll', () => {
+        const video = document.getElementById('video');
+        if (video) {
+            video.style.transform = 'translateY(' + window.scrollY * 0.5 + 'px)';
+        }
+    });
 
-    if (!isMuted) {
-        audio.volume = 1;
-        isMuted = true;
-    }
-    else {
-        audio.volume = 0;
-        isMuted = false;
-    }
-    audio.play();
-    console.log("pressed");
 });
